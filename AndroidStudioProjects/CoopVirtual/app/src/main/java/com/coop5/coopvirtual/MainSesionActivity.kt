@@ -19,9 +19,11 @@ import android.text.SpannableString
 import android.text.Spanned
 import android.text.TextPaint
 import android.text.style.AbsoluteSizeSpan
+import android.text.style.BackgroundColorSpan
 import android.text.style.ForegroundColorSpan
 import android.text.style.MetricAffectingSpan
 import android.text.style.StyleSpan
+import android.text.style.TypefaceSpan
 import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -52,6 +54,10 @@ import com.android.volley.toolbox.Volley
 import com.google.android.material.navigation.NavigationView
 import org.json.JSONException
 import org.json.JSONObject
+
+
+
+
 
 
 class MainSesionActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -254,18 +260,22 @@ class MainSesionActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
 
 
         //    val bannerContainer: FrameLayout = findViewById(R.id.banner_container)
+
         val viewPager: ViewPager = findViewById(R.id.viewPager2)
         val width = viewPager.width
         Log.d("Ancho ViewPager", "El ancho del ViewPager es: $width píxeles")
 
-// Agregar fragmentos al adaptador del ViewPager
+
         val adapter = ViewPagerAdapter(supportFragmentManager)
         adapter.addFragment(ImageFragment.newInstance(R.drawable.sensa_background))
         adapter.addFragment(ImageFragment.newInstance(R.drawable.bannerweb))
         adapter.addFragment(ImageFragment.newInstance(R.drawable.pagar))
         adapter.addFragment(ImageFragment.newInstance(R.drawable.trabajo))
 
+
 // Establecer adaptador en el ViewPager
+
+
         viewPager.adapter = adapter
         adapter.notifyDataSetChanged() // Notificar al adaptador después de agregar todos los fragmentos
         // Configurar temporizador para cambiar las imágenes automáticamente
@@ -651,44 +661,93 @@ class MainSesionActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         }
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_logout -> {
-                val token = Utilidades.getTokenFromSharedPreferences(this)
-                if (token != null) {
-                    val actionView = item.actionView
-                    actionView?.setBackgroundColor(ContextCompat.getColor(this, R.color.verde))
-                    cerrarSesion()
-                } else {
-                    Log.e("MainSesionActivity", "No se pudo obtener el token de SharedPreferences")
-                }
-                true
-            }
-
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
-
-
-    override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
-        val menuItem = menu?.findItem(R.id.action_logout)
-        menuItem?.setActionView(R.layout.menu_item_button)
-        return super.onPrepareOptionsMenu(menu)
-    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.logout_menu, menu)
 
         // Obtener el ítem del menú "Cerrar Sesión"
         val logoutItem = menu?.findItem(R.id.action_logout)
-        // Aplicar el filtro de color al fondo del ítem del menú
-        logoutItem?.actionView?.background?.setColorFilter(
-            ContextCompat.getColor(this, R.color.verde),
-            PorterDuff.Mode.SRC_IN
-        )
+
+        // Verificar que el ítem del menú no sea nulo
+        logoutItem?.let { item ->
+            // Obtener la fuente personalizada
+            val typeface = ResourcesCompat.getFont(this, R.font.regular)
+
+            if (typeface != null) {
+                // Crear un SpannableString con el título del ítem del menú
+                val title = SpannableString(item.title)
+
+                // Aplicar el tipo de letra
+                title.setSpan(
+                    CustomTypefaceSpan(typeface),
+                    0,
+                    title.length,
+                    Spannable.SPAN_INCLUSIVE_INCLUSIVE
+                )
+
+                // Crear un ForegroundColorSpan con el color deseado para el texto
+                val foregroundColorSpan =
+                    ForegroundColorSpan(ContextCompat.getColor(this, R.color.coope))
+
+                // Aplicar el ForegroundColorSpan al SpannableString
+                title.setSpan(
+                    foregroundColorSpan,
+                    0,
+                    title.length,
+                    Spannable.SPAN_INCLUSIVE_INCLUSIVE
+                )
+
+                // Establecer el título modificado en el ítem del menú
+                item.title = title
+                // Establecer el ícono en el ImageView
+
+            }
+
+        }
 
         return true
     }
+
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_logout -> {
+                cerrarSesion()
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
+
+
+        // CustomTypefaceSpan class to apply custom font
+        class CustomTypefaceSpan(private val newType: Typeface) : TypefaceSpan("") {
+
+            override fun updateDrawState(ds: TextPaint) {
+                applyCustomTypeFace(ds, newType)
+            }
+
+            override fun updateMeasureState(paint: TextPaint) {
+                applyCustomTypeFace(paint, newType)
+            }
+
+            private fun applyCustomTypeFace(paint: Paint, tf: Typeface) {
+                val oldStyle: Int
+                val old = paint.typeface
+                oldStyle = old?.style ?: 0
+
+                val fake = oldStyle and tf.style.inv()
+                if (fake and Typeface.BOLD != 0) {
+                    paint.isFakeBoldText = true
+                }
+                if (fake and Typeface.ITALIC != 0) {
+                    paint.textSkewX = -0.25f
+                }
+                paint.typeface = tf
+            }
+        }
+    }
 }
+
 
 

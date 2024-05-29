@@ -1,10 +1,12 @@
 <!-- res/layout/menu_item_button_formal.xml -->
 <Button xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/btn_logout"
+
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/coope"
+    android:background="@drawable/custom_button_background"
     android:text="Cerrar Sesión"
-    android:textColor="@color/white"
+    android:textColor="@android:color/black"
     android:textSize="16sp"
     android:paddingStart="16dp"
     android:paddingEnd="16dp"
