@@ -507,8 +507,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     }
 
     private fun startLoginActivity() {
-
         val intent = Intent(this, LoginActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP // Agrega esta línea, con esto hago que si tengo una main en la pila corriendo, se elimine
         startActivity(intent)
     }
 
