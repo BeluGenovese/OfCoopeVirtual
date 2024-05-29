@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <!-- Permisos -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-feature android:name="android.hardware.telephony"  />
+
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@drawable/logo_coop"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/logo_coop"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.CoopVirtual"
+        tools:targetApi="31"
+        android:usesCleartextTraffic="true"
+
+        >
+        <activity
+            android:name=".DocumentsActivity"
+            android:exported="false"
+            android:label="@string/title_activity_documents"
+            android:theme="@style/Theme.CoopVirtual" />
+        <activity
+            android:name=".ActivityVencimientos"
+            android:exported="false"
+            android:label="VencimientosActivity"
+            android:theme="@style/AppTheme" />
+
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false"
+            android:label="@string/title_activity_settings"
+            android:theme="@style/Theme.CoopVirtual" />
+
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.CoopVirtual">
+
+
+        </activity>
+        <activity android:name=".TramitesActivity">
+            <!-- Puedes agregar más configuraciones si es necesario -->
+        </activity>
+
+
+
+
+        <activity
+            android:name=".LoginActivity"
+            android:theme="@style/AppTheme">
+            <!-- Puedes agregar atributos adicionales aquí, como el icono, la etiqueta, etc. -->
+        </activity>
+
+
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false"
+            android:label="@string/title_activity_profile"
+            android:theme="@style/Theme.CoopVirtual" />
+        <activity android:name=".InicioSesionActivity"
+            android:theme="@style/AppTheme">
+            <!-- Puedes agregar atributos adicionales aquí, como el icono, la etiqueta, etc. -->
+        </activity>
+        <activity android:name=".MainSesionActivity"
+            android:theme="@style/AppTheme">
+            <!-- Puedes agregar atributos adicionales aquí, como el icono, la etiqueta, etc. -->
+        </activity>
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"> <!-- Cambiado el tema a NoActionBar -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter><!-- Cambiado el tema a NoActionBar -->
+
+        </activity>
+    </application>
+
+</manifest> 

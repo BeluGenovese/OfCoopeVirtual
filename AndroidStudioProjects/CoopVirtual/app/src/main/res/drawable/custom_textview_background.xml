@@ -1,0 +1,15 @@
+<!-- custom_textview_background.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Borde con esquinas redondeadas -->
+    <corners android:radius="12dp" />
+
+    <!-- Gradiente de color -->
+    <gradient
+        android:startColor="#71AC73"
+        android:endColor="#89AF4C"
+        android:angle="45"/>
+
+    <!-- Tamaño de la sombra -->
+    <size android:width="2dp"
+        android:height="2dp" />
+</shape>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <!-- Otros atributos de estilo aquí -->
+    </style>
+
+    <style name="MenuStyle" parent="Theme.AppCompat.Light">
+        <item name="android:windowBackground">@color/coope</item>
+
+    </style>
+
+    <style name="CustomAlertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:background">@drawable/dialog_background</item>
+        <item name="android:textColor">@color/black</item>
+        <!-- Otros atributos personalizados según tus necesidades -->
+    </style>
+    <style name="DialogButtonStyle" parent="Widget.AppCompat.Button">
+        <item name="android:textColor">@color/black</item> <!-- Cambia el color del texto -->
+        <item name="android:background">@drawable/custom_button_background</item> <!-- Cambia el fondo del botón -->
+        <!-- Otros atributos de estilo según tus necesidades -->
+    </style>
+
+
+
+    <!-- dialog
+
+    _background.xml -->
+
+</resources>

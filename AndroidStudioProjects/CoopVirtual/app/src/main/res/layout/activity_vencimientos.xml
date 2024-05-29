@@ -1,0 +1,62 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Encabezado con logo y título -->
+    <RelativeLayout
+        android:id="@+id/headerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:background="@color/coope">
+
+        <ImageView
+            android:id="@+id/logoImageView"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/logo_coop"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="16dp" />
+
+        <TextView
+            android:id="@+id/titleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/logoImageView"
+            android:layout_centerVertical="true"
+            android:text="Coope Virtual"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/myfont"/>
+    </RelativeLayout>
+
+    <!-- RecyclerView para los elementos -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/headerLayout"
+        android:layout_above="@id/footerLayout" />
+
+    <!-- Pie de página con botón de volver -->
+    <RelativeLayout
+        android:id="@+id/footerLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/coope"> <!-- Fondo verde -->
+
+        <!-- Botón de volver -->
+        <Button
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Volver"
+            android:background="@drawable/custom_round_button_background"
+            android:textColor="@android:color/black"
+            android:layout_centerInParent="true"
+            android:textStyle="bold"/> <!-- Centrado vertical y horizontalmente -->
+    </RelativeLayout>
+</RelativeLayout>
+

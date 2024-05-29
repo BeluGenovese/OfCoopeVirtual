@@ -1,0 +1,35 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_header"
+            android:title=""
+            /> </group>
+
+    <item
+        android:id="@+id/nav_contratos"
+        android:title="MIS CONTRATOS"
+        />
+    <item
+        android:id="@+id/nav_tramites"
+        android:title="MIS TRAMITES" />
+    <item
+        android:id="@+id/nav_info"
+        android:title="INFO DE INTERES" />
+
+    <item
+        android:id="@+id/nav_legales"
+        android:title="LEGALES Y AYUDA"
+
+
+        />
+
+
+    <item
+        android:id="@+id/nav_salir"
+        android:title=""
+        app:actionLayout="@layout/menu_item_button" />
+
+</menu>
+

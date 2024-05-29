@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Estado por defecto -->
+    <item android:drawable="@drawable/facebook" android:width="5dp" android:height="5dp"/>
+
+    <!-- Otros estados si es necesario -->
+    <!-- Por ejemplo, si deseas establecer una imagen diferente cuando el botón está presionado -->
+    <!-- <item android:drawable="@drawable/otra_imagen" android:state_pressed="true" /> -->
+
+</selector>

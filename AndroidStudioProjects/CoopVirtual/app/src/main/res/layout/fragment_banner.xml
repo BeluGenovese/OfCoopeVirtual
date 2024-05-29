@@ -1,0 +1,15 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <ImageView
+        android:id="@+id/banner_image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop" />
+    <!-- Puedes agregar cualquier diseño que desees para mostrar las imágenes del banner aquí -->
+    <!-- Por ejemplo, puedes usar un ImageView para mostrar las imágenes -->
+
+</LinearLayout>
