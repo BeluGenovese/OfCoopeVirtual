@@ -668,10 +668,14 @@ class MainSesionActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         // Obtener el ítem del menú "Cerrar Sesión"
         val logoutItem = menu?.findItem(R.id.action_logout)
 
+
+
         // Verificar que el ítem del menú no sea nulo
         logoutItem?.let { item ->
+
+
             // Obtener la fuente personalizada
-            val typeface = ResourcesCompat.getFont(this, R.font.regular)
+            val typeface = ResourcesCompat.getFont(this, R.font.san3)
 
             if (typeface != null) {
                 // Crear un SpannableString con el título del ítem del menú
@@ -684,11 +688,16 @@ class MainSesionActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
                     title.length,
                     Spannable.SPAN_INCLUSIVE_INCLUSIVE
                 )
-
+                val fontSizeSpan = AbsoluteSizeSpan(20, true) // true indica que el tamaño está en píxeles
                 // Crear un ForegroundColorSpan con el color deseado para el texto
                 val foregroundColorSpan =
                     ForegroundColorSpan(ContextCompat.getColor(this, R.color.coope))
-
+                title.setSpan(
+                    fontSizeSpan,
+                    0,
+                    title.length,
+                    Spannable.SPAN_INCLUSIVE_INCLUSIVE
+                )
                 // Aplicar el ForegroundColorSpan al SpannableString
                 title.setSpan(
                     foregroundColorSpan,
@@ -705,8 +714,12 @@ class MainSesionActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
 
         }
 
+
+
+
         return true
     }
+
 
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

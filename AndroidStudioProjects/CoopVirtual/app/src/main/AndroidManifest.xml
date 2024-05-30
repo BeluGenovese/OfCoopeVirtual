@@ -41,6 +41,11 @@
             android:label="@string/title_activity_settings"
             android:theme="@style/Theme.CoopVirtual" />
 
+       <activity
+            android:name=".RegistroActivity"
+            android:label="RegistroActivity"
+            android:theme="@style/Theme.AppCompat" />
+
         <activity
             android:name=".SplashActivity"
             android:exported="true"

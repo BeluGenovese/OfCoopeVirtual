@@ -1,0 +1,18 @@
+<!-- res/drawable/custom_edittext_background.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <!-- Borde -->
+    <stroke
+        android:width="2dp"
+        android:color="#CCCCCC" /> <!-- Cambia el color del borde según tu preferencia -->
+
+    <!-- Esquinas redondeadas -->
+    <corners
+        android:radius="8dp" /> <!-- Ajusta el radio según sea necesario -->
+
+    <!-- Color de fondo -->
+    <solid
+        android:color="@color/transparent" /> <!-- Cambia el color de fondo según tu preferencia -->
+
+</shape>

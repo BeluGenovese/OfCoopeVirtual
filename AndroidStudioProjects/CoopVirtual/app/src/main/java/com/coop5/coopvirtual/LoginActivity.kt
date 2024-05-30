@@ -143,8 +143,16 @@ class LoginActivity : AppCompatActivity() {
             requestQueue.add(stringRequest)
 
 
+
+        }
+        val btnRegister = findViewById<Button>(R.id.btn_register)
+        btnRegister.setOnClickListener {
+            // Abre la actividad de registro cuando se hace clic en el botón de registro
+            val intent = Intent(this, RegistroActivity::class.java)
+            startActivity(intent)
         }
     }
+
 
         private fun saveTokenToSharedPreferences(token: String) {
           val sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE)
