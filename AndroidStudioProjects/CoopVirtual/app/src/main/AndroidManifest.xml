@@ -43,8 +43,8 @@
 
        <activity
             android:name=".RegistroActivity"
-            android:label="RegistroActivity"
-            android:theme="@style/Theme.AppCompat" />
+           android:exported="true"
+           android:theme="@style/Theme.CoopVirtual" />
 
         <activity
             android:name=".SplashActivity"
@@ -55,6 +55,12 @@
         </activity>
         <activity android:name=".TramitesActivity">
             <!-- Puedes agregar más configuraciones si es necesario -->
+        </activity>
+
+        <activity
+            android:name=".TermsActivity"
+            android:theme="@style/AppTheme">
+            <!-- Puedes agregar atributos adicionales aquí, como el icono, la etiqueta, etc. -->
         </activity>
 
 

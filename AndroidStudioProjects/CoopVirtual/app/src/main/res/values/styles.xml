@@ -22,8 +22,13 @@
         <item name="android:background">@drawable/custom_button_background</item> <!-- Cambia el fondo del botón -->
         <!-- Otros atributos de estilo según tus necesidades -->
     </style>
-
-
+    <style name="CustomEditText" parent="Widget.AppCompat.EditText">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:background">@drawable/dialog_background</item>
+        <item name="android:padding">12dp</item>
+        <item name="android:drawablePadding">16dp</item>
+        <!-- Otros atributos que necesites -->
+    </style>
     <!-- dialog
 
     _background.xml -->

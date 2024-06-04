@@ -1,5 +1,9 @@
-<!-- dialog_background.xml -->
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="#FFFFFF"/> <!-- Color de fondo del diálogo -->
+    <!-- Borde con esquinas redondeadas y color transparente -->
+    <stroke
+        android:width="2dp"
+
+        android:color="#FF000000" /> <!-- Cambiar el color y el ancho del contorno según sea necesario -->/>
+    <solid android:color="#00FFFFFF"/> <!-- Color de fondo del diálogo transparente -->
     <corners android:radius="16dp"/> <!-- Radio de las esquinas redondeadas del diálogo -->
 </shape>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Contenido de la política de privacidad -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Política de privacidad de APP ReclamosCoop"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:padding="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Información que recopilamos"
+
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:padding="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ReclamosCoop no recopila ningún tipo de información. Se solicita un usuario y clave, que le hemos entregado antes al usuario para que la utilice.\n\nInformación de uso: ReclamosCoop sólo recopila la información que el usuario ingrese como observaciones del cierre de los reclamos."
+            android:padding="16dp" />
+        <!-- Sección: Cómo usamos su información -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cómo usamos su información"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:padding="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ReclamosCoop no comparte su información personal con terceros, excepto en las siguientes circunstancias:\n\nPara cumplir con la ley: ReclamosCoop puede compartir su información con terceros para cumplir con una ley o una orden judicial.\n\nPara proteger nuestros derechos: ReclamosCoop puede compartir su información con terceros para proteger nuestros derechos, como en caso de una disputa legal."
+            android:padding="16dp" />
+        <!-- Sección: Seguridad de su información -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Seguridad de su información"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:padding="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ReclamosCoop al no tener información personal, del usuario que utiliza la App, no se necesita tomar medidas para proteger su información personal. Aun así toda la información proporcionada esta protegida con las siguientes medidas:\n\nAlmacenamiento seguro: ReclamosCoop almacena su información en servidores seguros.\n\nControl de acceso: Solo los empleados autorizados de ReclamosCoop tienen acceso a su información."
+            android:padding="16dp" />
+        <!-- Sección: Sus derechos -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sus derechos"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:padding="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Para conocer sobre sus derechos, puede ponerse en contacto con ReclamosCoop en cooperativaccjm@gmail.com o +54 3525 466201."
+            android:padding="16dp" />
+        <!-- Agrega más TextViews para el resto de la política de privacidad -->
+        <!-- Sección: Cambios a esta política de privacidad -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cambios a esta política de privacidad"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:padding="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="ReclamosCoop puede modificar esta política de privacidad de vez en cuando. Si realizamos cambios significativos a esta política, le notificaremos por correo electrónico o mediante un aviso en la aplicación."
+            android:padding="16dp" />
+
+        <!-- Sección: Cómo contactarnos -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cómo contactarnos"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:padding="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Correo electrónico: cooperativaccjm@gmail.com\nTeléfono: +54 3525 466201"
+            android:padding="16dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+
+            <Button
+                android:id="@+id/btnAceptar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/coope"
+                android:text="Aceptar"
+                android:layout_marginEnd="8dp"/>
+
+            <Button
+                android:id="@+id/btnNoAceptar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="No Aceptar"
+                android:background="@color/coope"
+                android:layout_marginStart="8dp"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</ScrollView>
