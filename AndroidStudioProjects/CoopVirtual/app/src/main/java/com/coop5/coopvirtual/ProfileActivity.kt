@@ -10,7 +10,10 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.coop5.coopvirtual.databinding.ActivityProfileBinding
 
-class ProfileActivity : AppCompatActivity() {
+class
+
+
+ProfileActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityProfileBinding

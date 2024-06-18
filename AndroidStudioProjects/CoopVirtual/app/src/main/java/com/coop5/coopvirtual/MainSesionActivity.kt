@@ -54,11 +54,13 @@ import com.android.volley.toolbox.Volley
 import com.google.android.material.navigation.NavigationView
 import org.json.JSONException
 import org.json.JSONObject
-
-
-
-
-
+import java.nio.charset.StandardCharsets
+import javax.crypto.Cipher
+import javax.crypto.spec.IvParameterSpec
+import javax.crypto.spec.SecretKeySpec
+import android.util.Base64
+import java.security.SecureRandom
+import java.util.HashMap
 
 class MainSesionActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -184,6 +186,7 @@ class MainSesionActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
 
         val textViewApellido = findViewById<TextView>(R.id.text_view_apellido)
         val textViewIniciarSesion = findViewById<TextView>(R.id.btn_iniciar_sesion2)
+
 
         textViewIniciarSesion.text = nombre
         textViewApellido.text = apellido
@@ -412,6 +415,7 @@ class MainSesionActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
         }
     }
 
+
     private fun showPopup() {
         // Verifica si el usuario ha iniciado sesión
         if (!usuarioHaIniciadoSesion()) {
@@ -496,6 +500,7 @@ class MainSesionActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
     }
 
 
+
     private fun onCallButtonClicked() {
         // Request permission
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE)
@@ -550,6 +555,7 @@ class MainSesionActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
     }
 
 
+
     private class CustomTypefaceSpan(private val typeface: Typeface?) : MetricAffectingSpan() {
         override fun updateDrawState(ds: TextPaint) {
             typeface?.let { ds.typeface = it }
@@ -583,14 +589,33 @@ class MainSesionActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
     }
 
     private fun cerrarSesion() {
-        val token = Utilidades.getTokenFromSharedPreferences(this)
-        if (token != null) {
-            Log.d("MainSesionActivity", "Iniciando cierre de sesión con token: $token")
+        val idSession = Utilidades.getIdSesionFromSharedPreferences(this)
+        val session = Utilidades.getSesionFromSharedPreferences(this)
+        Log.d("MainSesionActivity22", "Session obtenida de SharedPreferences: $session") // Log para ver la sesión
 
-            val url = "https://api.coop5.com.ar:5003/api/oficina-virtual/logout"
-            val stringRequest = object : StringRequest(
-                Request.Method.POST, url,
-                Response.Listener<String> { response ->
+        if (idSession != null && session != null) {
+            val url = "http://back.coop5.com.ar:9502/sessionC/close"
+
+            // Desencriptar la sesión antes de enviarla
+            val decryptedSession = decryptSession(session)
+            Log.d("MainSesionActivity22", "Session desencriptada: $decryptedSession") // Log para ver la sesión desencriptada
+
+            // Encriptar la sesión nuevamente antes de agregarla al cuerpo de la solicitud
+            val encryptedSession = encryptSession(decryptedSession)
+            Log.d("MainSesionActivity22", "Session reencriptada: $encryptedSession") // Log para ver la sesión reencriptada
+
+            val jsonBody = JSONObject().apply {
+                put("idSession", idSession)
+                put("session", encryptedSession)
+            }
+
+            Log.d("MainSesionActivity22", "Cuerpo de la solicitud JSON: $jsonBody") // Log para ver el cuerpo de la solicitud
+
+            val jsonObjectRequest = object : JsonObjectRequest(
+                Method.POST,
+                url,
+                jsonBody,
+                Response.Listener { response ->
                     Log.d("MainSesionActivity", "Respuesta del servidor: $response")
 
                     // Mostrar mensaje de cierre de sesión
@@ -611,26 +636,59 @@ class MainSesionActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
                     ).show()
                 }
             ) {
-                override fun getHeaders(): Map<String, String> {
+                override fun getHeaders(): MutableMap<String, String> {
                     val headers = HashMap<String, String>()
-                    headers["Authorization"] = "Bearer $token"
+                    headers["s"] = session // Agregar la sesión a los encabezados
                     return headers
-                }
-
-                override fun getBody(): ByteArray {
-                    return byteArrayOf() // No se necesita un cuerpo en este caso
-                }
-
-                override fun getBodyContentType(): String {
-                    return "application/json"
                 }
             }
 
+
             val requestQueue = Volley.newRequestQueue(this)
-            requestQueue.add(stringRequest)
+            requestQueue.add(jsonObjectRequest)
         } else {
-            Log.e("MainSesionActivity", "No se pudo obtener el token de SharedPreferences")
-            Toast.makeText(this, "No se pudo obtener el token de sesión", Toast.LENGTH_LONG).show()
+            Log.e("MainSesionActivity", "No se pudo obtener el idSession o la session de SharedPreferences")
+            Toast.makeText(this, "No se pudo obtener la sesión para cerrar", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun decryptSession(encryptedSession: String): String {
+        return try {
+            val key = "b6a8f4cd59d4d2c3b22cf14fc7ffe310" // 32-byte key (256 bits)
+            val decodedBytes = Base64.decode(encryptedSession, Base64.DEFAULT)
+            val iv = decodedBytes.copyOfRange(0, 16)
+            val encrypted = decodedBytes.copyOfRange(16, decodedBytes.size)
+
+            val ivSpec = IvParameterSpec(iv)
+            val secretKeySpec = SecretKeySpec(key.toByteArray(StandardCharsets.UTF_8), "AES")
+
+            val cipher = Cipher.getInstance("AES/CBC/PKCS5Padding")
+            cipher.init(Cipher.DECRYPT_MODE, secretKeySpec, ivSpec)
+
+            val decryptedBytes = cipher.doFinal(encrypted)
+            String(decryptedBytes, StandardCharsets.UTF_8)
+        } catch (ex: Exception) {
+            Log.e("MainSesionActivity", "Error al desencriptar la sesión: ${ex.message}")
+            throw RuntimeException(ex)
+        }
+    }
+    private fun encryptSession(session: String): String {
+        return try {
+            val key = "aefead521acbe4004448e768109eda6b" // 32-byte key (256 bits)
+            val iv = generateRandomIV()
+
+            val ivSpec = IvParameterSpec(iv)
+            val secretKeySpec = SecretKeySpec(key.toByteArray(StandardCharsets.UTF_8), "AES")
+
+            val cipher = Cipher.getInstance("AES/CBC/PKCS5Padding")
+            cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec, ivSpec)
+
+            val encrypted = cipher.doFinal(session.toByteArray(StandardCharsets.UTF_8))
+            val ivAndEncrypted = iv + encrypted
+            Base64.encodeToString(ivAndEncrypted, Base64.DEFAULT)
+        } catch (ex: Exception) {
+            Log.e("MainSesionActivity", "Error al encriptar la sesión: ${ex.message}")
+            throw RuntimeException(ex)
         }
     }
 
@@ -718,6 +776,12 @@ class MainSesionActivity : AppCompatActivity(), NavigationView.OnNavigationItemS
 
 
         return true
+    }
+    private fun generateRandomIV(): ByteArray {
+        val random = SecureRandom()
+        val iv = ByteArray(16) // Utilizar la misma longitud que en PHP (16 bytes)
+        random.nextBytes(iv)
+        return iv
     }
 
 

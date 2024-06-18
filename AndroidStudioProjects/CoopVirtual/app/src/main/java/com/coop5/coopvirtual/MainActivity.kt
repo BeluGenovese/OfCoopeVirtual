@@ -1,10 +1,11 @@
 package com.coop5.coopvirtual
 
+import android.Manifest
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.graphics.Typeface
-import android.graphics.drawable.AnimationDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
@@ -16,18 +17,14 @@ import android.text.style.AbsoluteSizeSpan
 import android.text.style.ForegroundColorSpan
 import android.text.style.MetricAffectingSpan
 import android.text.style.StyleSpan
-import android.text.style.UnderlineSpan
 import android.util.Log
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
-import android.view.WindowManager
 import android.view.animation.AnimationUtils
 import android.widget.Button
-import android.widget.FrameLayout
 import android.widget.ImageButton
-import android.widget.LinearLayout
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -40,12 +37,6 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.navigation.NavigationView
-import com.coop5.coopvirtual.BannerFragment
-import android.Manifest
-import android.content.ActivityNotFoundException
-import android.content.DialogInterface
-import android.provider.Settings
-import android.widget.ImageView
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -57,7 +48,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private  val INSTAGRAM_REQUEST_CODE = 102 // Example value
     private val REQUEST_CODE_INTERNET = 104
 
-
+    private val btnMisTramites: Button? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

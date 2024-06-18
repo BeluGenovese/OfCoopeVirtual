@@ -19,12 +19,13 @@
     <color name="transparent">#00FFFFFF</color>
     <color name="verdeWhat">#4CAF50</color>
     <color name="verde1">#114232</color>
-    <color name="shadow_color">#808080</color>
+    <color name="shadow_color">#F1EFEF</color>
     <color name="verde">#3CCF4E</color>
     <color name="yellow">#CDFADB</color>
     <color name="yellow2">#F1E4C3</color>
+    <color name="verde_oscuro">#00796B</color>
 
-
+    <color name="gris">#E8E2E2</color>
 
 
 </resources>
